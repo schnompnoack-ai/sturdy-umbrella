@@ -1,0 +1,1 @@
+Die Discovery-Schicht arbeitet ausschließlich lesend. Sie signiert oder sendet keine Transaktionen und aktiviert keine unbekannten Claim-Funktionen. Konkrete Adapter benötigen verifizierte Contract-Adresse, Chain-ID, RPC und ABI.

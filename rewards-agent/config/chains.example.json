@@ -1,0 +1,9 @@
+{
+  "chains": [
+    { "chainId": 1, "name": "ethereum", "rpcUrl": "${RPC_ETHEREUM}" },
+    { "chainId": 137, "name": "polygon", "rpcUrl": "${RPC_POLYGON}" },
+    { "chainId": 8453, "name": "base", "rpcUrl": "${RPC_BASE}" },
+    { "chainId": 42161, "name": "arbitrum", "rpcUrl": "${RPC_ARBITRUM}" },
+    { "chainId": 56, "name": "bsc", "rpcUrl": "${RPC_BSC}" }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "dryRun": true,
+  "minRewardWei": "0",
+  "maxGasWei": "0",
+  "maxClaimsPerRun": 1,
+  "adapters": []
+}
