@@ -25,8 +25,14 @@ export interface ClaimResult {
   reason?: string;
 }
 
+export interface ApprovalToken {
+  id: string;
+  requestDigest: Hex;
+  expiresAt: number;
+}
+
 export interface Signer {
-  signAndSend(request: ClaimRequest): Promise<Hex>;
+  signAndSend(request: ClaimRequest, approval: ApprovalToken): Promise<Hex>;
 }
 
 export interface RewardsAdapter {
