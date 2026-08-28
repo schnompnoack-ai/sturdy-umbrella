@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Rewards Agent Security Policy",
+  "type": "object",
+  "required": ["allowedChainIds", "allowedContracts", "allowedRecipients", "maxRewardWei", "maxGasWei", "maxNativeBalanceWei", "maxClaimsPerRun"],
+  "properties": {
+    "allowedChainIds": {"type": "array", "items": {"type": "integer", "minimum": 1}, "minItems": 1},
+    "allowedContracts": {"type": "array", "items": {"type": "string", "pattern": "^0x[0-9a-fA-F]{40}$"}, "minItems": 1},
+    "allowedRecipients": {"type": "array", "items": {"type": "string", "pattern": "^0x[0-9a-fA-F]{40}$"}, "minItems": 1},
+    "maxRewardWei": {"type": "string", "pattern": "^[0-9]+$"},
+    "maxGasWei": {"type": "string", "pattern": "^[0-9]+$"},
+    "maxNativeBalanceWei": {"type": "string", "pattern": "^[0-9]+$"},
+    "maxClaimsPerRun": {"type": "integer", "minimum": 1}
+  },
+  "additionalProperties": false
+}
