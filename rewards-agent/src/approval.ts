@@ -1,10 +1,5 @@
-import type { ClaimRequest, Hex } from './types.js';
-
-export interface ApprovalToken {
-  id: string;
-  requestDigest: Hex;
-  expiresAt: number;
-}
+import { randomUUID } from 'node:crypto';
+import type { ApprovalToken, ClaimRequest, Hex } from './types.js';
 
 export interface ApprovalGate {
   requestApproval(request: ClaimRequest, digest: Hex): Promise<ApprovalToken | null>;
@@ -17,7 +12,7 @@ export class ManualApprovalGate implements ApprovalGate {
   async requestApproval(request: ClaimRequest, digest: Hex): Promise<ApprovalToken | null> {
     const approved = await this.approve(request, digest);
     if (!approved) return null;
-    return { id: crypto.randomUUID(), requestDigest: digest, expiresAt: Date.now() + 5 * 60_000 };
+    return { id: randomUUID(), requestDigest: digest, expiresAt: Date.now() + 5 * 60_000 };
   }
 
   async consumeApproval(token: ApprovalToken, digest: Hex): Promise<boolean> {
