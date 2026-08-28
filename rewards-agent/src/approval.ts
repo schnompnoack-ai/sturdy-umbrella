@@ -7,6 +7,8 @@ export interface ApprovalGate {
 }
 
 export class ManualApprovalGate implements ApprovalGate {
+  private readonly consumed = new Set<string>();
+
   constructor(private readonly approve: (request: ClaimRequest, digest: Hex) => Promise<boolean>) {}
 
   async requestApproval(request: ClaimRequest, digest: Hex): Promise<ApprovalToken | null> {
@@ -16,6 +18,10 @@ export class ManualApprovalGate implements ApprovalGate {
   }
 
   async consumeApproval(token: ApprovalToken, digest: Hex): Promise<boolean> {
-    return token.requestDigest.toLowerCase() === digest.toLowerCase() && token.expiresAt > Date.now();
+    if (token.expiresAt <= Date.now()) return false;
+    if (this.consumed.has(token.id)) return false;
+    if (token.requestDigest.toLowerCase() !== digest.toLowerCase()) return false;
+    this.consumed.add(token.id);
+    return true;
   }
 }
